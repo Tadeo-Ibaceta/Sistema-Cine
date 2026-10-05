@@ -1,0 +1,32 @@
+<section class="detail-container">
+    @if (movie(); as peliculaActual) {
+    <div class="detail-card">
+        <img [src]="peliculaActual.portadaUrl" [attr.alt]="'Portada de ' + peliculaActual.nombre" class="detail-cover">
+
+        <div class="detail-info">
+            <h1>{{ peliculaActual.nombre }}</h1>
+
+            <p class="detail-format">Formato: {{ peliculaActual.formato }}</p>
+            <p class="detail-genre">Género/s: {{ peliculaActual.genero }}</p>
+            <p class="detail-synopsis">Sinopsis: {{ peliculaActual.sinopsis }}</p>
+            
+            @if (authService.currentUser()){
+                <button class="btn-fav" (click)="agregarAFavoritos()" style="width: 50%; margin-bottom: 10px; background-color: #f0ad4e; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">
+                    ⭐ Añadir a Favoritos
+                </button>
+            }
+
+        </div>
+
+    </div>
+
+    } @else {
+    <div class="not-found">
+        <h2> Pelicula no encontrada</h2>
+        <p>La pelicula con ID "{{ id() }}" no existe en el catálogo.</p>
+    </div>
+    }
+
+    <!-- Navegación programática: volver al home -->
+    <button class="back-btn" (click)="volver()">← Volver al Catálogo</button>
+</section>

@@ -1,0 +1,22 @@
+<section class="home-container">
+    <h2>Nuestras Películas</h2>
+
+    <!-- Two-way binding con model(): sincroniza el valor de búsqueda entre Home y SearchBar -->
+    <app-search-bar [(termino)]="filtroBusqueda" />
+
+    <div class="movies-grid">
+
+    @for (movie of peliculasFiltradas(); track movie.id) {
+        <div class="movie-wrapper">
+
+        <app-movie-card [movie]="movie" (click)="verDetalle(movie.id)"/>
+        </div>
+    } @empty {
+        <div class="no-results">
+            <p>😔 No se encontraron peliculas para "{{ filtroBusqueda() }}"</p>
+        </div>
+    }
+    </div>
+</section>
+<!-- router-outlet para RUTAS HIJAS (children) -->
+<router-outlet />

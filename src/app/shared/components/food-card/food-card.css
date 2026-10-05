@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+
+    height: 250px;
+    border-radius: 40px;
+
+    background-color: #36313b;
+
+    /* Sombra inicial sutil y transición suave */
+    box-shadow: 0 4px 8px #00000066;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s
+}
+
+/* Efecto al pasar el cursor por encima */
+.card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta 5 píxeles */
+    background-color: #443e4a; /* Aclara un poco el fondo */
+    box-shadow: 0 12px 20px #00000066; /* Sombra más grande y oscura */
+}
+
+/* Efecto al hacer clic */
+.card:active {
+    transform: translateY(-2px); /* Baja un poco respecto al hover */
+    box-shadow: 0 6px 10px #0000004d; /* Reduce la sombra imitando presión */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    color: #c6c1be;
+}
+
+img {
+    height: 350px;
+    width: 200px;
+    margin: 15px;
+    margin-bottom: 0px;
+    border-radius: 30px;
+}
+
+.precio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a3aaa2;
+    padding: 0px;
+}

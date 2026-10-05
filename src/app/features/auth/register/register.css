@@ -1,0 +1,165 @@
+.auth-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f8fafc;
+}
+
+.auth-card {
+    padding: 28px;
+    background-color: #1e293b;
+    border: 3px solid #334155;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px -5px #0000004d;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;    
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #6366f1;
+    color: #ffffff;     
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background-color: #4f46e5;
+}
+
+button:disabled {
+    background-color: #475569;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+input {
+    margin-left: 0;
+    padding: 10px 14px;
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: #6366f1; /* Resaltado al hacer foco */
+    box-shadow: 0 0 0 3px #6366f133;
+}
+
+p.auth-link {
+    padding: 20px 0;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 18px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.error-msg {
+    text-align: center;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 3px solid #f1aeb5;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 18px;
+    padding: 10px;
+}
+
+.success-msg {
+    color: #0a3622;
+    background-color: #d1e7dd;
+    border: 5px solid #a3cfbb;
+    border-radius: 8px;
+    font-size: 13px;
+    min-height: 18px;
+    padding: 10px;
+}
+
+a {
+    padding: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #818cf8;
+    background-color: #283863;
+    border-radius: 6px;
+    border: 1px solid #6366f14d;
+    transition: background-color 0.2s;
+}
+
+a:hover {
+    color: #0f172a;
+    border-color: #1e293b;
+    background-color: #00e1ff7c;
+}
+
+#birthDate {
+    /* Elimina estilos por defecto de Firefox */
+    appearance: textfield; 
+    position: relative;
+}
+
+/* Para navegadores Webkit (Chrome/Edge), ocultamos el ícono */
+#birthDate::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+select {
+    padding: 10px 38px 10px 14px; /* Espacio extra a la derecha para la flecha */
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select option {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 10px;
+}
+
+select option[value=""][disabled] {
+    color: #64748b;
+}

@@ -1,0 +1,42 @@
+<section class="favoritos-container">
+    <h2>⭐ Mis Libros Favoritos</h2>
+    
+    @if (favoritosService.cargando()) {
+        <p class="loading-msg">Cargando favoritos...</p>
+    } @else if (favoritos().length === 0) {
+        <p class="empty-state">No tienes libros favoritos aún. ¡Busca en el catálogo y agrega algunos!</p>
+    } @else {
+    <div class="favoritos-grid">
+        @for (fav of favoritos(); track fav.id) {
+            <div class="favorito-card">
+                <!-- Los datos del libro vienen del JOIN con la tabla libros -->
+                <img [src]="fav.Movie?.portadaUrl" [alt]="fav.Movie?.nombre" class="cover">
+                <div class="info">
+                <h3>{{ fav.Movie?.nombre }}</h3>
+                <p class="duracion">Duracion: {{ fav.Movie?.duracion }}</p>
+                <p class="genero">Genero/s {{ fav.Movie?.genero }}</p>
+                
+                <!-- Modo visualización de nota -->
+                @if (editandoId !== fav.id) {
+                    <p class="nota"><strong>Mi nota:</strong> {{ fav.nota || 'Sin notas.' }}</p>
+                    <div class="actions">
+                    <button class="btn-edit" (click)="iniciarEdicion(fav)">✏️ Editar Nota</button>
+                    <button class="btn-delete" (click)="eliminar(fav.id!)">🗑️ Eliminar</button>
+                    </div>
+                } 
+                <!-- Modo edición de nota -->
+                @else {
+                    <div class="edit-nota-form">
+                    <input type="text" [formControl]="notaControl" placeholder="¿Qué te pareció la película?">
+                    <div class="actions">
+                        <button class="btn-save" (click)="guardarNota(fav.id!)" [disabled]="notaControl.invalid">💾 Guardar</button>
+                        <button class="btn-cancel" (click)="cancelarEdicion()">❌ Cancelar</button>
+                    </div>
+                </div>
+                }   
+                </div>
+            </div>
+        }
+    </div>
+    }
+</section>

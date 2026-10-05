@@ -1,0 +1,11 @@
+.candy-bar-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 2rem;
+}

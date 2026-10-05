@@ -1,0 +1,11 @@
+<div class="card">
+    <img [src]="movie().portadaUrl" alt="Portada" class="cover" >
+    <span class="duracion">{{ movie().duracion }}min</span>
+    
+    <div class="card-body">
+        <h2>{{ movie().nombre }}</h2>
+        <p class="formato">Formato: {{ movie().formato }}</p>
+        <p class="genero">Género: {{ movie().genero }}</p>
+    
+    </div>
+</div>

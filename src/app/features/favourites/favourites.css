@@ -1,0 +1,116 @@
+.favoritos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; 
+}
+
+h2 { 
+    color: #ffffff;
+    font-size: 2rem;
+    padding-bottom: 10px;
+}
+
+.empty-state, .loading-msg { 
+    color: #ffffff; 
+    font-style: italic; 
+}
+
+.favoritos-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; 
+}
+
+.favorito-card { 
+    display: flex; 
+    gap: 15px; 
+    background: #36313b; 
+    padding: 15px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.cover { 
+    width: 80px; 
+    height: 120px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+}
+
+.info { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+h3 { 
+    color: #00608e;
+    margin: 0 0 5px 0; 
+    font-size: 1.1em; 
+}
+
+.duracion { 
+    color: #c6c1be; 
+    font-size: 0.85em; 
+    margin: 2px 0; 
+}
+
+.genero { 
+    color: #c6c1be; 
+    font-size: 0.8em; 
+    margin: 2px 0; 
+}
+
+.nota { 
+    font-size: 0.9em; 
+    color: #555; 
+    background: #f9f9f9; 
+    padding: 8px; 
+    border-radius: 4px; 
+    border-left: 3px solid #f0ad4e; 
+}
+
+.actions { 
+    display: flex; 
+    gap: 8px; 
+    margin-top: 10px; 
+}
+
+button { 
+    border: none; 
+    padding: 6px 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 0.85em; 
+    font-weight: bold; 
+}
+
+.btn-edit { 
+    background-color: #f0ad4e; 
+    color: white; 
+}
+
+.btn-delete { 
+    background-color: #d9534f; 
+    color: white; 
+}
+
+.btn-save { 
+    background-color: #5cb85c; 
+    color: white; 
+}
+
+.btn-cancel { 
+    background-color: #ccc; 
+    color: #333; 
+}
+
+.edit-nota-form input { 
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+}

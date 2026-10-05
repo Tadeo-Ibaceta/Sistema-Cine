@@ -1,0 +1,41 @@
+.navbar {
+    background-color: #36313b;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    background-color: #ffffff1a;
+    transform: translateY(-1px); /* Eleva la tarjeta 5 píxeles */
+    box-shadow: 0 12px 20px #00000066; /* Sombra más grande y oscura */
+}
+
+/* routerLinkActive agrega esta clase automáticamente al link activo */
+.nav-links a.active {
+    color: #ffffff;
+    background-color: #3498db;
+}
