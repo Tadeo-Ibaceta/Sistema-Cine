@@ -18,7 +18,7 @@ export class Favourites {
 
   // Estado para la edición
   editandoId: string | null = null;
-  notaControl = this.fb.control('', Validators.maxLength(200));
+  comentarioControl = this.fb.control('', Validators.maxLength(200));
 
   ngOnInit() {
     this.favoritosService.cargarFavoritos();
@@ -32,17 +32,22 @@ export class Favourites {
 
   iniciarEdicion(fav: Favourite) {
     this.editandoId = fav.id!;
-    this.notaControl.setValue(fav.nota);
+    this.comentarioControl.setValue(fav.comentario);
   }
 
   cancelarEdicion() {
     this.editandoId = null;
-    this.notaControl.reset();
+    this.comentarioControl.reset();
   }
 
-  async guardarNota(id: string) {
-    if (this.notaControl.valid) {
-      await this.favoritosService.actualizarNota(id, this.notaControl.value || '');
+  calificar(id: string | undefined, estrellas: string) {
+    if (!id) return;
+    this.favoritosService.actualizarNota(id, estrellas);
+  }
+
+  async guardarComentario(id: string) {
+    if (this.comentarioControl.valid) {
+      await this.favoritosService.actualizarComentario(id, this.comentarioControl.value || '');
       this.editandoId = null;
     }
   }

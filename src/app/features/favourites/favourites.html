@@ -12,27 +12,42 @@
                 <!-- Los datos del libro vienen del JOIN con la tabla libros -->
                 <img [src]="fav.Movie?.portadaUrl" [alt]="fav.Movie?.nombre" class="cover">
                 <div class="info">
-                <h3>{{ fav.Movie?.nombre }}</h3>
-                <p class="duracion">Duracion: {{ fav.Movie?.duracion }}</p>
-                <p class="genero">Genero/s {{ fav.Movie?.genero }}</p>
+                    <h3>{{ fav.Movie?.nombre }}</h3>
+                    <p class="duracion">Duracion: {{ fav.Movie?.duracion }}</p>
+                    <p class="genero">Genero/s {{ fav.Movie?.genero }}</p>
                 
+                    <!-- Calificación guardada en fav.nota -->
+                    <div class="rating">
+                        @for (star of ['5', '4', '3', '2', '1']; track star) {
+                            <input 
+                                type="radio" 
+                                [id]="'star-' + star + '-' + fav.id" 
+                                [name]="'rating-' + fav.id" 
+                                [value]="star"
+                                [checked]="fav.nota === star"
+                                (change)="calificar(fav.id!, star)" 
+                            />
+                            <label [for]="'star-' + star + '-' + fav.id">★</label>
+                        }
+                    </div>
                 <!-- Modo visualización de nota -->
-                @if (editandoId !== fav.id) {
-                    <p class="nota"><strong>Mi nota:</strong> {{ fav.nota || 'Sin notas.' }}</p>
+                @if (editandoId !== fav.id) {            
+                    <p class="comment"><strong>Mi Opinión:</strong> {{ fav.comentario || 'Sin Comentarios.' }}</p>
                     <div class="actions">
-                    <button class="btn-edit" (click)="iniciarEdicion(fav)">✏️ Editar Nota</button>
-                    <button class="btn-delete" (click)="eliminar(fav.id!)">🗑️ Eliminar</button>
+                        <button class="btn-edit" (click)="iniciarEdicion(fav)">✏️ Editar Comentario</button>
+                        <button class="btn-delete" (click)="eliminar(fav.id!)">🗑️ Eliminar</button>
                     </div>
+
                 } 
-                <!-- Modo edición de nota -->
+                <!-- Modo edición de Comentarios -->
                 @else {
-                    <div class="edit-nota-form">
-                    <input type="text" [formControl]="notaControl" placeholder="¿Qué te pareció la película?">
-                    <div class="actions">
-                        <button class="btn-save" (click)="guardarNota(fav.id!)" [disabled]="notaControl.invalid">💾 Guardar</button>
-                        <button class="btn-cancel" (click)="cancelarEdicion()">❌ Cancelar</button>
+                    <div class="edit-comment-form">
+                        <input type="text" [formControl]="comentarioControl" placeholder="¿Qué te pareció la película?">
+                        <div class="actions">
+                            <button class="btn-save" (click)="guardarComentario(fav.id!)" [disabled]="comentarioControl.invalid">💾 Guardar</button>
+                            <button class="btn-cancel" (click)="cancelarEdicion()">❌ Cancelar</button>
+                        </div>
                     </div>
-                </div>
                 }   
                 </div>
             </div>

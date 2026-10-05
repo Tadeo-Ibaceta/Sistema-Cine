@@ -55,18 +55,39 @@ export class FavouritesService {
         }
     }
 
-    // Actualizar (UPDATE) la nota de un favorito
-    async actualizarNota(id: string, nuevaNota: string) {
+    // Actualizar la calificación (Guardada en 'nota')
+    async actualizarNota(id: string, calificacion: string) {
+        // 1. Actualización optimista de la señal
+        this.favoritos.update(favs =>
+            favs.map(f => f.id === id ? { ...f, nota: calificacion } : f)
+        );
+
+        // 2. Persistencia en Supabase
         const { data, error } = await this.supabase
         .from('Favourites')
-        .update({ nota: nuevaNota })
+        .update({ nota: calificacion })
+        .eq('id', id)
+        .select('*, Movie(*)');
+
+        if (error) {
+            console.error('Error al actualizar nota en Supabase:', error.message);
+            await this.cargarFavoritos(); // Revertir en caso de error
+        }
+    }
+
+
+    // Actualizar (UPDATE) el comentario de un favorito
+    async actualizarComentario(id: string, nuevoComentario: string) {
+        const { data, error } = await this.supabase
+        .from('Favourites')
+        .update({ comentario: nuevoComentario })
         .eq('id', id)
         .select('*, Movie(*)')
         .single();
 
         if (error) {
-        console.error('Error al actualizar nota:', error.message);
-        alert('Error al actualizar la nota.');
+        console.error('Error al actualizar comentario:', error.message);
+        alert('Error al actualizar el comentario.');
         } else if (data) {
         // Actualizamos el estado local
         this.favoritos.update(favs => 
