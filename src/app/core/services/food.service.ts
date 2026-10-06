@@ -35,7 +35,7 @@ export class FoodService {
     }
 
   // ============================================================
-  // CARGAR PELICULAS DESDE SUPABASE
+  // CARGAR COMIDAS DESDE SUPABASE
   // ============================================================
     private async cargarComidasDesdeDB(): Promise<void> {
         this.cargando.set(true);
@@ -46,7 +46,7 @@ export class FoodService {
             .order('nombre', { ascending: true });
 
         if (error) {
-            console.error('❌ Error al cargar las peliculas desde Supabase:', error.message);
+            console.error('❌ Error al cargar las comidas desde Supabase:', error.message);
         } else {
             this.foodsSignal.set(data || []);
             console.log(`✅ Se cargaron ${data?.length ?? 0} comidas desde Supabase`);
@@ -91,7 +91,7 @@ export class FoodService {
         .subscribe();
     }
 
-    getMovieById(id: string) {
+    getFoodById(id: string) {
         return computed(() => this.foodsSignal().find(food => food.id === id));
     }
 }

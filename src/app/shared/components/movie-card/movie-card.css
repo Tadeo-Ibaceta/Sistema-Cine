@@ -43,7 +43,6 @@
     object-fit: cover;    /* Recorta y encaja la imagen uniformemente sin deformarla */
     object-position: center; /* Asegura que el foco esté en el centro de la imagen */
     margin: 15px 15px 0 15px;
-    margin-bottom: 0px;
     border-radius: 30px;
     flex-shrink: 0; /* Impide que Flexbox en la tarjeta reduzca la imagen */
 }

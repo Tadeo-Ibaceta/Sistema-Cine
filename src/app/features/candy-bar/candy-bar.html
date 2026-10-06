@@ -1,4 +1,28 @@
-<section class="candy-bar-container">
+<!-- <section class="candy-bar-container">
     <h2>Combos Candy</h2>
     <app-food-card></app-food-card>
+</section> -->
+
+<section class="candy-bar-container">
+    <h2>Combos Candy</h2>
+
+    @if (foodService.cargando()) {
+        <p class="cargando">Cargando productos del Candy Bar...</p>
+    } @else {
+        <div class="grid-candy">
+            @for (food of foodService.foods(); track food.id) {
+                <div class="candy-wrapper">
+                    <app-food-card 
+                    [food]="food"
+                    [cantidad]="getCantidad(food.id)"
+                    (agregar)="agregarProducto($event)"
+                    (quitar)="quitarProducto($event)">
+                    </app-food-card>
+                </div>
+                
+            } @empty {
+                <p class="no-results">No hay productos disponibles por el momento.</p>
+            }
+        </div>
+    }
 </section>

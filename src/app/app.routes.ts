@@ -7,13 +7,13 @@ import { Register } from './features/auth/register/register';
 
 export const routes: Routes = [
     
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', loadComponent: () => import('./features/home/home').then(c => c.Home)},
 
-    { path: 'upcoming-movies', component: UpcomingMovies },
+    { path: 'upcoming-movies', loadComponent: () => import('./features/upcoming-movies/upcoming-movies').then(c => c.UpcomingMovies) },
 
-    { path: 'favourites', component: Favourites },
+    { path: 'favourites', loadComponent: () => import('./features/favourites/favourites').then(c => c.Favourites) },
 
-    { path: 'candy-bar', component: CandyBar },
+    { path: 'candy-bar', loadComponent: () => import('./features/candy-bar/candy-bar').then(c => c.CandyBar)},
 
     { path: 'home',
         loadComponent: () => import("./features/home/home").then(c => c.Home),
@@ -25,9 +25,9 @@ export const routes: Routes = [
         ]
     },
 
-    { path: 'login', component: Login},
+    { path: 'login', loadComponent: () => import('./features/auth/login/login').then(c => c.Login)},
 
-    { path: 'register', component: Register},
+    { path: 'register', loadComponent: () => import('./features/auth/register/register').then(c => c.Register)},
 
     // Wildcard: cualquier ruta no definida redirige a /home
     { path: '**', redirectTo: '/home' }

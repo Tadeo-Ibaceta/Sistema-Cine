@@ -9,7 +9,7 @@
     @for (movie of peliculasFiltradas(); track movie.id) {
         <div class="movie-wrapper">
 
-        <app-movie-card [movie]="movie" (click)="verDetalle(movie.id)"/>
+            <app-movie-card [movie]="movie" (click)="verDetalle(movie.id)"/>
         </div>
     } @empty {
         <div class="no-results">

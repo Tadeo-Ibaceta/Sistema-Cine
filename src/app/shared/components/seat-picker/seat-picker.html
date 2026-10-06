@@ -1,0 +1,62 @@
+<div class="pantalla-container">
+    <div class="pantalla">PANTALLA</div>
+</div>
+
+<div class="mapa-cine">
+    <div *ngFor="let fila of mapaFilas" class="fila-row">
+        <span class="letra-fila">{{ fila.letra }}</span>
+
+        <!-- Bloque Izquierdo -->
+        <div class="bloque-asientos">
+            <button 
+            *ngFor="let b of fila.bloques.bloque1"
+            [class]="'seat ' + b.tipo + ' ' + b.estado"
+            [disabled]="b.estado === 'ocupada'"
+            (click)="toggleButaca(b)"
+            [title]="b.id + ' - ' + b.tipo.toUpperCase() + ' ($' + b.precio + ')'">
+            {{ b.numero }}
+            </button>
+        </div>
+
+        <!-- Pasillo 1 -->
+        <div class="pasillo"></div>
+
+        <!-- Bloque Centro -->
+        <div class="bloque-asientos centro">
+            <button 
+            *ngFor="let b of fila.bloques.bloque2"
+            [class]="'seat ' + b.tipo + ' ' + b.estado"
+            [disabled]="b.estado === 'ocupada'"
+            (click)="toggleButaca(b)"
+            [title]="b.id + ' - ' + b.tipo.toUpperCase() + ' ($' + b.precio + ')'">
+            {{ b.numero }}
+            </button>
+        </div>
+
+        <!-- Pasillo 2 -->
+        <div class="pasillo"></div>
+
+        <!-- Bloque Derecho -->
+        <div class="bloque-asientos">
+            <button 
+            *ngFor="let b of fila.bloques.bloque3"
+            [class]="'seat ' + b.tipo + ' ' + b.estado"
+            [disabled]="b.estado === 'ocupada'"
+            (click)="toggleButaca(b)"
+            [title]="b.id + ' - ' + b.tipo.toUpperCase() + ' ($' + b.precio + ')'">
+            {{ b.numero }}
+            </button>
+        </div>
+
+        <span class="letra-fila">{{ fila.letra }}</span>
+    </div>
+</div>
+
+<!-- Referencias Leyenda -->
+<div class="leyenda">
+    <div class="item"><span class="seat comun libre"></span> Normal</div>
+    <div class="item"><span class="seat discapacidad libre"></span> Accesible (J, K)</div>
+    <div class="item"><span class="seat vip libre"></span> VIP (R, S, T)</div>
+    <div class="item"><span class="seat seleccionada"></span> Seleccionada</div>
+    <div class="item"><span class="seat ocupada"></span> Ocupada</div>
+</div>

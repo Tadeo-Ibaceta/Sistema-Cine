@@ -5,8 +5,9 @@
 
     cursor: pointer;
 
-    height: 250px;
-    border-radius: 40px;
+    height: 350px;
+    width: 260px;
+    border-radius: 30px;
 
     background-color: #36313b;
 
@@ -31,22 +32,101 @@
 .card-body {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 200px;
     color: #c6c1be;
 }
 
-img {
-    height: 350px;
+.cover {
+    height: 200px;
     width: 200px;
-    margin: 15px;
-    margin-bottom: 0px;
-    border-radius: 30px;
+    margin: 20px 15px 0 15px;
+    border-radius: 15px;
+    object-fit: cover;    /* Recorta y encaja la imagen uniformemente sin deformarla */
+    object-position: center; /* Asegura que el foco esté en el centro de la imagen */
+    flex-shrink: 0; /* Impide que Flexbox en la tarjeta reduzca la imagen */
 }
 
 .precio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: #a3aaa2;
+    font-weight: 700;
     padding: 0px;
+}
+
+/* Estilos para el contenedor de botones y contador */
+.acciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: auto; /* Empuja las acciones al final del card-body */
+    padding-bottom: 10px;
+}
+
+/* Base común para ambos botones */
+.btn-restar, 
+.btn-sumar {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botón principal (Sumar / + Agregar) */
+.btn-sumar {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding: 10px 16px;
+    border-radius: 16px;
+    background-color: #a3aaa2; /* Color de acento de tu paleta */
+    color: #1e1b22;
+    box-shadow: 0 4px 10px #00000033;
+}
+
+.btn-sumar:hover {
+    background-color: #b5bcbe;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px #0000004d;
+}
+
+.btn-sumar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px #00000033;
+}
+
+/* Botón secundario (Restar) */
+.btn-restar {
+    width: 60px;
+    height: 38px;
+    border-radius: 10px; /* Botón circular para el signo '-' */
+    background-color: #2b2730;
+    color: #c6c1be;
+    border: 1px solid #48414e;
+    font-size: 1.2rem;
+}
+
+.btn-restar:hover {
+    background-color: #e74c3c; /* Tono rojizo al pasar el cursor para denotar resta/borrado */
+    color: #ffffff;
+    border-color: #e74c3c;
+    transform: scale(1.05);
+}
+
+.btn-restar:active {
+    transform: scale(0.95);
+}
+
+/* Indicador de cantidad */
+.contador {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    min-width: 24px;
+    text-align: center;
+    user-select: none;
 }

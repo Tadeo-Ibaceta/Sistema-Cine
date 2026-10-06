@@ -1,8 +1,18 @@
-<div class="card" (click)="mostrarAlerta()">
-    <img [src]="food.imagenUrl" alt="Portada" class="cover" >
-    
+<div class="card">
+    <img [src]="food.imagenUrl" [alt]="food.nombre" class="cover" />
+
     <div class="card-body">
         <h2>{{ food.nombre }}</h2>
-        <p class="precio">${{ food.precio }}</p>    
+        <p class="precio">${{ food.precio }}</p>
+
+        <div class="acciones">
+            @if (cantidad > 0) {
+                <button class="btn-restar" (click)="onQuitar()">-</button>
+                <span class="contador">{{ cantidad }}</span>
+            }
+            <button class="btn-sumar" (click)="onAgregar()">
+            {{ cantidad === 0 ? '+ Agregar' : '+' }}
+            </button>
+        </div>
     </div>
 </div>

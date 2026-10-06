@@ -8,5 +8,6 @@ export interface Movie {
     precio: number;
     sinopsis: string;
     fechaEstreno: string;
+    clasificacion: string;
     disponible: boolean;
 }

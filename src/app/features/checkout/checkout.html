@@ -1,0 +1,120 @@
+<div class="checkout-container">
+    <h2>Finalizar Compra de Entradas</h2>
+
+    <!-- Cartelera de Alerta por Restricción de Edad -->
+    <div *ngIf="requiereAcompananteAdulto" class="alerta-edad">
+        ⚠️ <strong>Aviso Importante:</strong> Esta película está clasificada para mayores de 
+        {{ pelicula?.clasificacion }} años. Los menores deben ingresar acompañados por un adulto responsable.
+    </div>
+
+    <div class="checkout-grid">
+        
+        <!-- Columna Izquierda: Mapa de Butacas y Selección de Candy Bar -->
+        <div class="col-main">
+            <section class="seccion-butacas">
+                <h3>1. Seleccioná tus Butacas</h3>
+                <app-seat-picker
+                [ocupadasIds]="butacasOcupadas"
+                [precioBase]="funcion?.precioBase || 5000"
+                [precioVip]="funcion?.precioVip || 7500"
+                (seleccionCambiada)="onSeleccionButacasCambiada($event)">
+                </app-seat-picker>
+            </section>
+
+            <section class="seccion-candy">
+                <h3>2. Agregá Candy Bar a tu Compra (Opcional)</h3>
+                <div class="candy-grid">
+                    <div *ngFor="let prod of productosCandy" class="candy-card">
+                        <h4>{{ prod.name }}</h4>
+                        <p class="precio">${{ prod.price }}</p>
+                        <button class="btn-secundario" (click)="agregarCandy(prod)">+ Agregar</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Columna Derecha: Resumen de Compra, Cupones y Pago -->
+        <div class="col-summary">
+            <div class="resumen-card">
+                <h3>Resumen del Pedido</h3>
+
+                <!-- Detalle de Entradas -->
+                <div class="resumen-seccion">
+                    <h4>Entradas ({{ butacasSeleccionadas.length }})</h4>
+                    <ul>
+                        <li *ngFor="let b of butacasSeleccionadas">
+                        Fila {{ b.fila }} - Asiento {{ b.numero }} 
+                        <span class="badge" [class.vip]="b.tipo === 'vip'">{{ b.tipo.toUpperCase() }}</span>
+                        - ${{ b.precio }}
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Detalle de Candy Bar -->
+                <div *ngIf="itemsCandySeleccionados.length > 0" class="resumen-seccion">
+                    <h4>Candy Bar</h4>
+                    <ul>
+                        <li *ngFor="let item of itemsCandySeleccionados">
+                        {{ item.cantidad }}x {{ item.item.name }} - ${{ item.item.price * item.cantidad }}
+                        <button class="btn-quitar" (click)="quitarCandy(item.item.id)">✕</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr />
+
+                <!-- Módulo de Cupones -->
+                <div class="cupon-box">
+                    <label>¿Tenés un cupón de descuento?</label>
+                    <div class="cupon-input">
+                        <input type="text" [(ngModel)]="codigoCupon" placeholder="Ej: MAYO50" />
+                        <button (click)="aplicarCuponManual()">Aplicar</button>
+                    </div>
+                    <p *ngIf="mensajeCupon" class="mensaje-cupon">{{ mensajeCupon }}</p>
+                </div>
+
+                <!-- Módulo de Crédito acumulado -->
+                <div *ngIf="creditoDisponible > 0" class="credito-box">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="usarCredito" />
+                        Usar mi crédito disponible (${{ creditoDisponible }})
+                    </label>
+                </div>
+
+                <!-- Datos Comprador Anónimo (si no está logueado) -->
+                <div *ngIf="!usuarioLogueado" class="anonimo-box">
+                    <label for="email">Email para recibir tus entradas:</label>
+                    <input type="email" id="email" [(ngModel)]="emailAnonimo" placeholder="tu@email.com" required />
+                </div>
+
+                <hr />
+
+                <!-- Desglose de Precios -->
+                <div class="desglose-precios">
+                    <div class="fila"><span>Subtotal:</span> <span>${{ subtotalGeneral }}</span></div>
+                        <div *ngIf="descuentoPorcentaje > 0" class="fila descuento">
+                            <span>Descuento ({{ descuentoPorcentaje }}%):</span> <span>-${{ montoDescuento }}</span>
+                        </div>
+                        <div *ngIf="montoCreditoAplicado > 0" class="fila credito">
+                            <span>Crédito Usado:</span> <span>-${{ montoCreditoAplicado }}</span>
+                        </div>
+                        <div class="fila total-final">
+                            <span>TOTAL A PAGAR:</span> <span>${{ totalFinal }}</span>
+                        </div>
+                
+                        <div *ngIf="usuarioLogueado" class="puntos-ganados">
+                            ✨ Sumás <strong>{{ puntosAProcesar }}</strong> puntos de fidelidad con esta compra.
+                        </div>
+                    </div>
+
+                    <button 
+                    class="btn-confirmar" 
+                    [disabled]="butacasSeleccionadas.length === 0"
+                    (click)="confirmarCompra()">
+                    Confirmar y Pagar
+                    </button>
+
+                </div>
+        </div>
+    </div>
+</div>
